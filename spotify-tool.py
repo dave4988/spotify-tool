@@ -22,6 +22,7 @@ def update_library():
 		results = sp.next(results)
 		#actually follow the artists and save albums in 20 song chunks
 		follow_artists_and_save_albums_from_tracks(results['items'])
+	print('Complete! Your library has been updated on Spotify.')
 
 def follow_artists_and_save_albums_from_tracks(tracks):
 	artists = list()
@@ -31,8 +32,8 @@ def follow_artists_and_save_albums_from_tracks(tracks):
 		artists.append(tracks[i]['track']['album']['artists'][0]['id'])
 		albums.append(tracks[i]['track']['album']['id'])
 		i = i + 1
-	#sp.user_follow_artists(artists)
+	sp.user_follow_artists(artists)
 	sp.current_user_saved_albums_add(albums)
-	print(albums)
+
 
 update_library()
